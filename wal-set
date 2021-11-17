@@ -1,6 +1,14 @@
 #!/bin/bash
 
-wal -i $1
+case $1 in
+	"-R")
+		wal -R
+		;;
+	*)
+		wal -i $1
+		;;
+esac
+
 spicetify -q update
 xdotool key Super+F5
 
