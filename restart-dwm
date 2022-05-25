@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-cd ~/GitPrograms/dwm/
-sudo make clean install
