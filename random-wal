@@ -1,4 +1,4 @@
 #!/bin/bash
-papes=(/home/cakemate/Pictures/Wallpapers/WalApproved/*)
+papes=(/home/cakemate/Pictures/Wallpapers/WalApproved/Current/*)
 /home/cakemate/bin/wal-set ${papes[$RANDOM % ${#papes[@]}]}
 #wal -i ${papes[$RANDOM % ${#papes[@]}]}
