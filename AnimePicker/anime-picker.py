@@ -8,14 +8,22 @@ import random
 print("What is your anime planet username?")
 user = sys.stdin.readline()
 
+result_num = 0
+while (result_num < 1):
+    print("How many results do you want to return?")
+    result_num = int(sys.stdin.readline())
+
+    if (result_num < 1):
+        print("Number must be 1 or greater.")
+
 page = 1
 animeList = []
 totalAnime = 1
 
 while (len(animeList) < totalAnime):
     watchlist_url = "https://www.anime-planet.com/users/" + user.rstrip() + "/anime/wanttowatch?page=" + str(page)
-    #print(watchlist_url)
-    html = requests.get(watchlist_url).text
+    get = requests.get(watchlist_url)
+    html = get.text
     soup = BeautifulSoup(html, 'html.parser')
 
     totalAnime = int(soup.find("b").get_text())
@@ -24,5 +32,6 @@ while (len(animeList) < totalAnime):
 
     page += 1
 
-print("Your random anime is:")
-print(random.choice(animeList))
+print("\nYour random result" + (" is:" if result_num == 1 else "s are:"))
+for i in range(result_num):
+    print(random.choice(animeList))
