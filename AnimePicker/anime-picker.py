@@ -27,11 +27,15 @@ while (len(animeList) < totalAnime):
     soup = BeautifulSoup(html, 'html.parser')
 
     totalAnime = int(soup.find("b").get_text())
+    if (result_num > totalAnime):
+        print("You requested more anime than what is in your want to watch list")
+        exit()
+
     for anime in soup.find_all('h3'):
         animeList.append(anime.get_text())
 
     page += 1
 
 print("\nYour random result" + (" is:" if result_num == 1 else "s are:"))
-for i in range(result_num):
-    print(random.choice(animeList))
+for result in random.sample(animeList, result_num):
+    print(result)
